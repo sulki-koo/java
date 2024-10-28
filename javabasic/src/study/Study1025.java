@@ -1,4 +1,4 @@
-package javabasic.variable;
+package study;
 
 import java.io.BufferedReader; // BufferedReader Class 사용
 import java.io.IOException;		// BufferedReader Class 사용
