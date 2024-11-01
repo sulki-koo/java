@@ -3,22 +3,22 @@ package study;
 public class ExMethod5 {
 
 	public static void main(String[] args) {
-		//데이터
+		// 데이터
 		String[][] info = { 
 				{ "홍길동", "90", "80", "70" }, 
 				{ "강감찬", "80", "70", "60" }, 
 				{ "이순신", "60", "50", "60" } 
-				};
+		};
 		int[] score = { 0, 0, 0 };
-		
-		// score에 데이터 넣기 
+
+		// score 배열에 데이터 넣기
 		saveDate(info, score);
-		
-		// 연산&프린트
+
+		// 연산&프린트 메소드 호출
 		addTotalScore(info, score);
 	} // main
 
-	// 데이터 저장
+	// 총점 데이터 저장
 	static void saveDate(String[][] stu, int[] score) {
 
 		int stuLenght = stu.length;
@@ -32,18 +32,18 @@ public class ExMethod5 {
 			}
 		}
 
-	}
+	} // saveDate
 
-	// 총점, 평균 연산&프린트
+	// 평균 연산&프린트
 	static void addTotalScore(String[][] stu, int[] score) {
 		int scoreLength = score.length;
 		int stu0Lenght = stu[0].length;
 		for (int i = 0; i < scoreLength; i++) {
-			for(int j=0; j < stu0Lenght;j++) {
-				System.out.print(stu[i][j]+" ");
+			for (int j = 0; j < stu0Lenght; j++) {
+				System.out.print(stu[i][j] + " ");
 			}
-			System.out.println("총점 : " + score[i] + "점, 평균 : " + score[i] / scoreLength + "점");
+			System.out.println("총점 : " + score[i] + "점, 평균 : " + score[i] / (stu0Lenght-1) + "점");
 		}
-	}
+	} // addTotalScore
 
 } // class
