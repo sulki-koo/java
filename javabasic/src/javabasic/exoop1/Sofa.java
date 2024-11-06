@@ -1,9 +1,15 @@
 package javabasic.exoop1;
 
-public class Sofa {
+public class Sofa extends Furniture{
 	
-	String color;
-	int people;  // 몇 인용
-	int price;
+	@Override
+	public String getColor() {
+		return "Ivory";
+	}
 
+	@Override
+	public String toString() {
+		return "소파";
+	}
+	
 }

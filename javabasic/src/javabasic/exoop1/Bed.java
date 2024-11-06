@@ -1,15 +1,15 @@
 package javabasic.exoop1;
 
-public class Table extends Furniture{
-
+public class Bed extends Furniture{
+	
 	@Override
 	public String getColor() {
-		return "Lavender";
+		return "Beige";
 	}
 
 	@Override
 	public String toString() {
-		return "테이블";
+		return "침대";
 	}
 	
 }
