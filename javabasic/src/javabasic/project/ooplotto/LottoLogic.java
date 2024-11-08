@@ -52,7 +52,7 @@ public class LottoLogic implements ILottoGame {
 	} // apply
 
 	// 입력받은 로또 번호 검사
-	static void inputDupe(int[] applyLotto, int[] lottoNum) {
+	void inputDupe(int[] applyLotto, int[] lottoNum) {
 
 		// 중복
 		int applyLottoLength = applyLotto.length;
@@ -77,7 +77,7 @@ public class LottoLogic implements ILottoGame {
 	}
 
 	// 입력한 번호 출력 and 조건에 부합하면 다음 단계
-	static void printApply(int[] applyLotto, int[] lottoNum, int k, int maxErr) {
+	void printApply(int[] applyLotto, int[] lottoNum, int k, int maxErr) {
 		System.out.println(Arrays.toString(applyLotto)); // 입력한 번호 출력
 		if (k != 0 || maxErr != 0) {
 			System.out.println("바른 값을 입력해주세요!");
@@ -155,4 +155,98 @@ public class LottoLogic implements ILottoGame {
 		System.out.println("(보너스번호:" + drawNamber[6] + ")");
 	} // printDraw
 
+	// 입력한 번호 출력 and 조건에 부합하면 다음 단계
+		void printApply(int[] applyLotto, int[] lottoNum, int k, int maxErr) {
+			System.out.println(Arrays.toString(applyLotto)); // 입력한 번호 출력
+			if (k != 0 || maxErr != 0) {
+				System.out.println("바른 값을 입력해주세요!");
+			} else {
+				madeLotto(applyLotto, lottoNum); // 중복이 아니면 로또번호 추첨
+			}
+		} // printApply
+
+		// 로또번호 추첨
+		void madeLotto(int[] applyLotto, int[] lottoNum) {
+			for (int i = 0; i < 7; i++) {
+				int lottoNumber = (int) (Math.random() * 45) + 1; // 45까지의 랜덤 숫자
+				lottoNum[i] = lottoNumber;
+			}
+			checkLotto(applyLotto, lottoNum); // 로또번호 중복체크 실행
+		} // madeLotto
+
+		// 로또번호 중복 체크
+		void checkLotto(int[] applyLotto, int[] lottoNum) {
+
+			int lottoNumLength = lottoNum.length;
+			int reCount = 0;
+
+			for (int i = 0; i < lottoNumLength; i++) {
+				for (int j = i + 1; j < lottoNumLength; j++) {
+					if (lottoNum[i] == lottoNum[j]) {
+						reCount++;
+					}
+				}
+			}
+			if (reCount == 0) {
+				matching(applyLotto, lottoNum);
+			} else {
+				madeLotto(applyLotto, lottoNum);
+			}
+
+		} // checkLotto
+
+		// 당첨 확인
+		void matching(int[] applyLotto, int[] lottoNum) {
+			int applyLottoLength = applyLotto.length;
+			int count = 0;
+			for (int i = 0; i < applyLottoLength; i++) { // 6번
+				for (int j = 0; j < applyLottoLength; j++) {
+					if (applyLotto[i] == lottoNum[j]) {
+						count += 1;
+					}
+				}
+			}
+			// 보너스 일치
+			int bonus = 0;
+			for (int i = 0; i < applyLottoLength; i++) {
+				if (lottoNum[6] == applyLotto[i])
+					bonus += 1;
+			}
+			printLotto(applyLotto, lottoNum, count, bonus);
+
+		}  // matching
+
+		// 로또 번호 출력
+		void printLotto(int[] applyLotto, int[] lottoNum, int count, int bonus) {
+			int lottoNumLength = lottoNum.length;
+			System.out.print("추첨 번호는 ");
+
+			for (int i = 0; i < lottoNumLength; i++) {
+				if (i == 6) {
+					System.out.println("(보너스번호:" + lottoNum[i] + ")");
+				} else
+					System.out.print(lottoNum[i] + " ");
+			}
+
+			System.out.println(count + "개 일치");
+
+			if (count == 6) {
+				System.out.println("축! 1등입니다!");
+			} else if (count == 5 && bonus > 0) {
+				System.out.println("축! 2등입니다!");
+			} else if (count == 5) {
+				System.out.println("축! 3등입니다!");
+			} else if (count == 4) {
+				System.out.println("축! 4등입니다!");
+			} else if (count == 3) {
+				System.out.println("축! 5등입니다!");
+			} else {
+				System.out.println("꽝! 다음기회에!");
+			}
+		}
+
+	}  // printLotto
+	
+	
+	
 } // class
