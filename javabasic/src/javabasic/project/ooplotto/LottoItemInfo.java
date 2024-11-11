@@ -1,6 +1,6 @@
 package javabasic.project.ooplotto;
 
-// 로또 아이템 정보
+/// 로또 아이템 정보
 public class LottoItemInfo {
 
 	private String itemName; // 품목명
@@ -20,13 +20,13 @@ public class LottoItemInfo {
 	}
 
 	public int getPrice() {
-		return 5000;
+		return 1000;
 	}
 	
 	// 아이템 정보 호출시 보이는 내용
 	@Override
 	public String toString() {
-		return "로또의 가격은 5,000원 입니다.";
+		return "로또의 가격은 1,000원 입니다.";
 	}
 
 }

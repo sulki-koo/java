@@ -1,45 +1,17 @@
 package javabasic.project.ooplotto;
 
-import javabasic.oop.inheritance.Person;
-
-// 로또 구매
+//로또 구매
 public class LottoBuyInfo {
 
-	private boolean howToPurchase; // 수동, 자동 구입
-	private int selectNumber; // 선택한 번호
 	private int count; // 구매 수량
+	private int autoApplyNum; // 자동으로 구매할 수량
 
 	public LottoBuyInfo() {
 	}
 
-	
-	public LottoBuyInfo(boolean howToPurchase) {
-		super();
-		this.howToPurchase = howToPurchase;
-	}
-
-
-	public LottoBuyInfo(boolean howToPurchase, int selectNumber, int count) {
-		super();
-		this.howToPurchase = howToPurchase;
-		this.selectNumber = selectNumber;
+	public LottoBuyInfo(int count, int autoApplyNum) {
 		this.count = count;
-	}
-
-	public boolean isHowToPurchase() {
-		return howToPurchase;
-	}
-
-	public void setHowToPurchase(boolean howToPurchase) {
-		this.howToPurchase = howToPurchase;
-	}
-
-	public int getSelectNumber() {
-		return selectNumber;
-	}
-
-	public void setSelectNumber(int selectNumber) {
-		this.selectNumber = selectNumber;
+		this.autoApplyNum = autoApplyNum;
 	}
 
 	public int getCount() {
@@ -48,6 +20,14 @@ public class LottoBuyInfo {
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+
+	public int getAutoApplyNum() {
+		return autoApplyNum;
+	}
+
+	public void setAutoApplyNum(int autoApplyNum) {
+		this.autoApplyNum = autoApplyNum;
 	}
 
 }
