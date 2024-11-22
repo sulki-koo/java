@@ -23,7 +23,7 @@ public class EXIO3 {
 		Reader reader = null;
 		
 		try {
-			File file = new File("D:\\\\embededk\\\\files\\\\student.dat");
+			File file = new File("D:\\embededk\\files\\student.dat");
 			os = new FileOutputStream(file);
 			os.write(student1.name.getBytes());
 			os.write(student1.score.kor.getBytes());
