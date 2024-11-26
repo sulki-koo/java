@@ -1,26 +1,32 @@
 package javabasic.exthread;
 
-import java.nio.file.attribute.AclEntry;
-import java.util.Random;
-
 public class ProducerThread extends Thread {
 
 	private int pn = 0;
-	TVFactory tvFactory = new TVFactory();
+	private TVFactory ProducerThread;
+
+	public ProducerThread(TVFactory tvFactory) {
+		this.ProducerThread = tvFactory;
+	}
 
 	@Override
 	public void run() {
+
 		while (true) {
-			int tvNum = tvFactory.getTvNum();
-			pn = (int) (Math.random() * (10 - 5) + 1) + 5;
-			System.out.println((tvNum - pn) + "대 판매" + tvFactory);
+			synchronized (ProducerThread) {
+				pn = (int) (Math.random() * (10 - 4) + 1) + 4;
+				int i = ProducerThread.getTvNum() + pn;
+				ProducerThread.setTvNum(i);
+				System.out.println(pn + "대 생산/재고:" + i);
+			}
+
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 			} catch (InterruptedException ie) {
 				ie.printStackTrace();
-
 			}
 		}
-	}
 
-}
+	} // run
+
+} // class

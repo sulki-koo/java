@@ -4,9 +4,13 @@ public class ExThread4 {
 
 	public static void main(String[] args) {
 
-		Thread pt = new ProducerThread();
+		TVFactory tvf  = new TVFactory();
 		
+		Thread pt = new ProducerThread(tvf);
 		pt.start();
+		
+		Thread ct = new ConsumerThread(tvf);
+		ct.start();
 		
 	}
 
