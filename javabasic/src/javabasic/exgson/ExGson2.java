@@ -1,11 +1,11 @@
 package javabasic.exgson;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -62,29 +62,33 @@ public class ExGson2 {
 			List<Todo> todoList = gsonTodo.fromJson(jsonTodo, new TypeToken<List<Todo>>() {
 			}.getType());
 
-			BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+			PrintWriter bw = new PrintWriter(new FileWriter(file), true);
 			Map<Integer, Integer> idtodoTotalMap = new HashMap<Integer, Integer>();
 			Map<Integer, Integer> todoComMap = new HashMap<Integer, Integer>();
-			
+
 			int ulSize = userList.size();
 			int tlSize = todoList.size();
-			
+
 			for (int id = 0; id < ulSize; id++) {
 				int userTodoNum = 1;
 				int todoComNum = 1;
 				for (int i = 0; i < tlSize; i++) {
 					if (userList.get(id).getId() == todoList.get(i).getUserId()) {
 						idtodoTotalMap.put(userList.get(id).getId(), userTodoNum++);
-						if(todoList.get(i).getCompleted() == "true") {
+						if (todoList.get(i).getCompleted() == "true") {
 							todoComMap.put(userList.get(id).getId(), todoComNum++);
 						}
 					}
 				}
+				bw.write(userList.get(id).getName() + " [전체todo수:" + (userTodoNum - 1) + "개, 완료한 todo수:"
+						+ (todoComNum - 1) + "개]");
+				bw.println();
+				bw.flush();
 			}
+
+			// 사용자명 [전체todo수:00개, 완료한 todo수:00개]
 			System.out.println(idtodoTotalMap);
 			System.out.println(todoComMap);
-			
-			
 
 		} catch (MalformedURLException | URISyntaxException murie_urise) {
 			murie_urise.printStackTrace();
