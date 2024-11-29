@@ -51,9 +51,9 @@ public class ChattingClient {
    } // constructor
    
    // 클라이언트에서 서버로 문자열 전송 메소드
-   public void sendMessage(String inputTime, String id, String msg) {
+   public void sendMessage(String msg) {
 	   if(msg != "") {
-		   out.println(inputTime + id + " : "+ msg);
+		   out.println(msg);
 	   }
    }
    
@@ -95,9 +95,9 @@ public class ChattingClient {
       Scanner scanner = new Scanner(System.in);
       SimpleDateFormat adf = new SimpleDateFormat("[ kk: mm: ss ] ");
       
-      System.out.println("아이디를 입력하세요!");
-      String id = scanner.next();
-      System.out.println(id + "님 입장하셨습니다!");
+      //System.out.println("아이디를 입력하세요!");
+      //String id = scanner.next();
+     // System.out.println(id + "님 입장하셨습니다!");
       
       System.out.println("클라이언트 시작됨! 메세지를 입력해 주세요! 종료(exit)");
       
@@ -109,7 +109,8 @@ public class ChattingClient {
             System.exit(0);;
          }
         // 서버에 입력받을 문자열을 전송
-        chattingClient.sendMessage(inputTime, id, inputStr);
+        //chattingClient.sendMessage(inputTime + id + " : "+  inputStr);
+        chattingClient.sendMessage(inputTime + " : "+  inputStr);
       }
       
    } // main
