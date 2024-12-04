@@ -2,19 +2,20 @@ package projectteam1;
 
 import java.awt.Color;
 
-public class Block {
-	
-	private int x;
-	private int y;
-	private Color color;
-	private boolean block;
-	
+import javax.swing.JButton;
 
-	public Block(int x, int y) {
+public class Block extends JButton{
+
+	private int x; // 가로
+	private int y; // 세로
+	private Color bgColor; // 블록 컬러
+	private boolean pathYN; // 길 여부
+
+	public Block(int x, int y, boolean pathYN) {
 		this.x = x;
 		this.y = y;
-		this.color = color.BLACK;
-		this.block = true;
+		this.bgColor = pathYN == true ? bgColor.WHITE : bgColor.BLACK;
+		this.pathYN = pathYN;
 	}
 
 	public int getX() {
@@ -33,25 +34,20 @@ public class Block {
 		this.y = y;
 	}
 
-	public Color getColor() {
-		return color;
+	public Color getBgColor() {
+		return bgColor;
 	}
 
-	public void setColor(Color color) {
-		this.color = color;
+	public void setBgColor(Color bgColor) {
+		this.bgColor = bgColor;
 	}
 
-	public boolean isBlock() {
-		return block;
+	public boolean isPathYN() {
+		return pathYN;
 	}
 
-	public void setBlock(boolean block) {
-		this.block = block;
-	}
-
-	@Override
-	public String toString() {
-		return "Block [x=" + x + ", y=" + y + ", color=" + color + ", block=" + block + "]";
+	public void setPathYN(boolean pathYN) {
+		this.pathYN = pathYN;
 	}
 
 }
