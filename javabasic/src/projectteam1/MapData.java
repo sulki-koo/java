@@ -3,35 +3,35 @@ package projectteam1;
 // 맵 모양, 경로설정
 public class MapData {
 
-	private MouseRoadMap mrm = new MouseRoadMap(22, 22);
+	private MouseRoadMap mrm = new MouseRoadMap(28,27);
 
 	private int row = mrm.getSizex(); // 행
 	private int col = mrm.getSizey(); // 열
-	Path path;
+	Wall wall;
 
 	// 블록 2차원 배열로 공간 설정
 	private Block[][] gameMap = new Block[row][col];
 
 	public MapData() {
 
-		path = new Path();
+		wall = new Wall();
 		
 		int rowSize = gameMap.length;
 		int colSize = gameMap[0].length;
 
-		// 검은 블록 배치 - 마우스 닿으면 안됨
+		// 마우스 지나다닐수 있는 길
 		for (int i = 0; i < rowSize; i++) {
 			for (int j = 0; j < colSize; j++) {
-				gameMap[i][j] = new Block(i, j, false);
+				gameMap[i][j] = new Block(i, j, true);
 			}
 		}
 
-		int pathRowSize = path.getPathArr().length;
+		int pathRowSize = wall.getWallArr().length;
 
 		for (int i = 0; i < pathRowSize; i++) {
-			int x = path.getPathArr()[i][0];
-			int y = path.getPathArr()[i][1];
-			gameMap[x][y] = new Block(x, y, true);
+			int x = wall.getWallArr()[i][0];
+			int y = wall.getWallArr()[i][1];
+			gameMap[x][y] = new Block(x, y, false);
 		}
 
 	} // 생성자
