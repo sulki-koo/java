@@ -1,4 +1,4 @@
-package projectteam1;
+package ptest;
 
 // 게임 로직(실행 메소드 모음)
 public class MouseRoadLogic {

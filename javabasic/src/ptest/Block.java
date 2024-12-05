@@ -1,4 +1,4 @@
-package projectteam1;
+package ptest;
 
 import java.awt.Color;
 
