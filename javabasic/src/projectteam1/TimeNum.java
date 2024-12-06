@@ -1,33 +1,54 @@
 package projectteam1;
 
 import javax.swing.JLabel;
-import java.awt.*;
+import javax.swing.SwingUtilities;
+import java.awt.Font;
 
 public class TimeNum extends JLabel implements Runnable {
-	private int startTime;
 
-		    // 생성자
-		  public TimeNum(int startTime) {
-		        this.startTime = startTime; // 시작 시간 설정
-		    }
+	private int startTimeMillis; // 밀리세컨드 단위로 저장
+	private boolean running = false;
 
-		    @Override
-		    public void run() {
-		    	setText(String.valueOf(startTime)); // 초기 숫자 설정
-		        setHorizontalAlignment(CENTER); // 텍스트 중앙 정렬
-		        setFont(new Font("맑은 고딕",Font.BOLD, 60)); 
-		      
-		        while (startTime > 0) {
-		            try {
-		                Thread.sleep(1000); 
-		            } catch (InterruptedException e) {
-		                e.printStackTrace();
-		            }
-		            startTime--; // 1초 감소
-		            setText(String.valueOf(startTime)); 
-		        }
-		        setText("시간종료!"); 
-		    }
+	// 생성자
+	public TimeNum(int startTimeSec) {
+		this.startTimeMillis = startTimeSec * 1000; // 초를 밀리세컨드로 변환
+		setText(formatTime(startTimeMillis)); // 초기 텍스트 설정 (밀리세컨드로 표시)
+	}
+
+	private String formatTime(int timeMillis) {
+		int seconds = (timeMillis % 60000) / 1000;
+		int millis = timeMillis % 1000;
+		return String.format("%02d.%03d", seconds, millis); //
+	}
+
+	@Override
+	public void run() {
+		running = true;
+
+		while (startTimeMillis > 0) {
+			try {
+				Thread.sleep(1); // 1밀리초마다 카운트다운
+				startTimeMillis--; // 밀리세컨드 감소
+				SwingUtilities.invokeLater(() -> setText(formatTime(startTimeMillis))); // UI 업데이트
+
+			} catch (InterruptedException ie) {
+				running = false;
+				break; // 스레드 중단시 반복 종료
+			}
 		}
 
+		// 타이머 종료 후 텍스트 설정
+		setText(formatTime(startTimeMillis));
+	}
 
+	public void reset(int newStartTimeSec) {
+		startTimeMillis = newStartTimeSec * 1000; // 초를 밀리세컨드로 변환하여 초기화
+		running = false;
+		setText(formatTime(startTimeMillis)); // 초기 시간으로 표시
+	}
+	
+	public boolean isTimeOver() {
+		return startTimeMillis <= 0;  // 0이하면 true
+	}
+
+}

@@ -3,7 +3,7 @@ package ptest;
 // 맵 모양, 경로설정
 public class MapData {
 
-	private MouseRoadMap mrm = new MouseRoadMap(28,27);
+	private MouseRoadMap mrm = new MouseRoadMap(29,28);
 
 	private int row = mrm.getSizex(); // 행
 	private int col = mrm.getSizey(); // 열

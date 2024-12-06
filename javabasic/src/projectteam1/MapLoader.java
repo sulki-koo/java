@@ -8,10 +8,10 @@ public class MapLoader {
 
 	public MapLoader() {
 
-		maps = new MapData[3];  // 맵 3개 넣을 수 있음
-
+		maps = new MapData[1]; 
+		
 		maps[0] = new MapData();
-		//maps[1] = new Map클래스명();
+		//maps[1] = new Map클래스명(); //예시
 		//maps[2] = new Map클래스명();
 
 	}
