@@ -1,4 +1,4 @@
-package projectteam1;
+package javaprojectteam1;
 
 import java.awt.Color;
 

@@ -1,4 +1,4 @@
-package projectteam1;
+package javaprojectteam1;
 
 import java.awt.Image;
 
@@ -7,8 +7,6 @@ import javax.swing.JLabel;
 
 // 게임 로직(실행 메소드 모음)
 public class MouseRoadLogic {
-
-	private boolean gameStarted;
 
 	public MouseRoadLogic() {
 	}
@@ -22,15 +20,4 @@ public class MouseRoadLogic {
 		return new JLabel(resizedIcon);
 	}
 
-	public boolean isGameStarted() {
-		return gameStarted;
-	}
-
-	public void startGame() {
-		gameStarted = true;
-	}
-
-	public void endGame() {
-		gameStarted = false;
-	}
 }

@@ -1,4 +1,4 @@
-package projectteam1;
+package javaprojectteam1;
 
 import java.awt.Color;
 
@@ -35,14 +35,14 @@ public class TimeBar extends JLabel implements Runnable {
     @Override
     public void run() {
         running = true; // 실행 시작
-        int decrease = (second * 1000) / 800; // 폭 감소 속도 계산
+        double decrease = (second * 1000) / barWidth; // 폭 감소 속도 계산
         while (barWidth > 0 && running) {
             try {
                 barWidth -= 1;
                 setSize(barWidth, height); // UI 업데이트
                 revalidate();
                 repaint();
-                Thread.sleep(decrease);
+                Thread.sleep(((int)decrease)-1);
             } catch (InterruptedException ex) {
                 break; // 스레드 종료
             }
