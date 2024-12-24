@@ -75,7 +75,7 @@ public class JDBCTest3 {
 			}
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
-		} finally {
+		} finally { 
 			try {
 				// Connection, Statement, PreparedStatement, CallableStatement
 				// ResultSet은 객체 사용 후 반드시 close 해줘야 함!
