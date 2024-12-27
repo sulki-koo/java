@@ -1,4 +1,4 @@
-package javabasic.jdbc.board.util;
+package javabasic.publicdata.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,9 +12,9 @@ public class ConnectionUtil {
 
 	private Connection conn;
 
-	private static final String BOARD_URL = "jdbc:oracle:thin:@localhost:1521:xe";
-	private static final String USERNAME = "BOARD";
-	private static final String PASSWORD = "BOARD";
+	private static final String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+	private static final String USERNAME = "JDBC";
+	private static final String PASSWORD = "JDBC";
 
 	private ConnectionUtil() {
 	}
@@ -25,7 +25,7 @@ public class ConnectionUtil {
 
 	public Connection getConnection() {
 		try {
-			conn = DriverManager.getConnection(BOARD_URL, USERNAME, PASSWORD);
+			conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
